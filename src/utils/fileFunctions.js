@@ -1,9 +1,10 @@
 import fs from 'fs/promises';
 
 
-export async function readUserFromFile() {
+export async function readUserFromFile(path) {
 	try {
-		const data = await fs.readFile(dataBasePath, 'utf-8');
+		const dataPath = new URL(path, import.meta.url);
+		const data = await fs.readFile(dataPath, 'utf-8');
 
 		if (data) return JSON.parse(data);
 	} catch (error) {

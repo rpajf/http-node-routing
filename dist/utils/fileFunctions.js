@@ -7,9 +7,10 @@ exports.readUserFromFile = readUserFromFile;
 exports.writeUsersToFile = writeUsersToFile;
 var _promises = _interopRequireDefault(require("fs/promises"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function readUserFromFile() {
+async function readUserFromFile(path) {
   try {
-    const data = await _promises.default.readFile(dataBasePath, 'utf-8');
+    const dataPath = new URL(path, import.meta.url);
+    const data = await _promises.default.readFile(dataPath, 'utf-8');
     if (data) return JSON.parse(data);
   } catch (error) {
     console.error('Error reading user data:', error);

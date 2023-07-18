@@ -1,13 +1,14 @@
 const {readUserFromFile, writeUsersToFile}= require('../utils/fileFunctions')
 
 export class Entity {
-	constructor(entities=[]) {
+	constructor(entities=[], path) {
 		this.entities = entities;
+		this.path = path
 		this.initEntities();
 	}
 
 	async initEntities() {
-		await readUserFromFile();
+		await readUserFromFile(this.path);
 	}
 	generateRandomId() {
 		const id = Math.floor(Math.random() * 10) + 1;
@@ -22,7 +23,7 @@ export class Entity {
 		return this.entities;
 	}
 	async persist() {
-		await writeUsersToFile(this.entities);
+		await writeUsersToFile(this.entities, this.path);
 	}
 	async edit(id, newEntityData) {
 		const entityToFindIndex = this.entities.findIndex(
