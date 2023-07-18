@@ -1,9 +1,10 @@
-import fs from 'fs/promises';
 
+const fs = require('fs/promises')
+const path = require('path')
 
-export async function readUserFromFile(path) {
+export async function readUserFromFile(filePath) {
 	try {
-		const dataPath = new URL(path, import.meta.url);
+		const dataPath = path.resolve(__dirname, filePath);
 		const data = await fs.readFile(dataPath, 'utf-8');
 
 		if (data) return JSON.parse(data);
@@ -15,10 +16,10 @@ export async function readUserFromFile(path) {
 
 export async function writeUsersToFile(
 	entities,
-	path
+	filePath
 ) {
 
-	const dataPath = new URL(path, import.meta.url);
+	const dataPath = path.resolve(__dirname, filePath);
 	fs.writeFile(dataPath, JSON.stringify(entities)).catch((error) => {
 		console.error('Error writing user data:', error);
 	});
