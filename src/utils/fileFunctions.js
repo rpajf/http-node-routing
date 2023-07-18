@@ -24,7 +24,7 @@ export async function writeUsersToFile(
 		console.error('Error writing user data:', error);
 	});
 }
-process.on('exit', cleanup);
-function cleanup() {
-	fs.writeFile(dataBasePath, '');
-}
+// process.on('exit', cleanup);
+// function cleanup() {
+// 	fs.writeFile(dataBasePath, '');
+// }
