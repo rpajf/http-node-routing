@@ -12,3 +12,5 @@ export async function json(req, res){
 
   res.setHeader('Content-Type', 'application/json' )
 }
+
+module.exports = json

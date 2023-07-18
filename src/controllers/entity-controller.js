@@ -53,4 +53,4 @@ export class Entity {
 	}
 }
 
-module.exports = new Entity()
+module.exports = Entity
