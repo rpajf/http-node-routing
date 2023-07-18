@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 
-export const dataBasePath = new URL('../mockDb/db.txt', import.meta.url);
 
 export async function readUserFromFile() {
 	try {
@@ -14,9 +13,12 @@ export async function readUserFromFile() {
 }
 
 export async function writeUsersToFile(
-	entities
+	entities,
+	path
 ) {
-	fs.writeFile(dataBasePath, JSON.stringify(entities)).catch((error) => {
+
+	const dataPath = new URL(path, import.meta.url);
+	fs.writeFile(dataPath, JSON.stringify(entities)).catch((error) => {
 		console.error('Error writing user data:', error);
 	});
 }

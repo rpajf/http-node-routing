@@ -1,8 +1,8 @@
 const {readUserFromFile, writeUsersToFile}= require('../utils/fileFunctions')
 
 export class Entity {
-	entities = []
-	constructor() {
+	constructor(entities=[]) {
+		this.entities = entities;
 		this.initEntities();
 	}
 

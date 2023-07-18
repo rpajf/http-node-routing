@@ -3,13 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dataBasePath = void 0;
 exports.readUserFromFile = readUserFromFile;
 exports.writeUsersToFile = writeUsersToFile;
 var _promises = _interopRequireDefault(require("fs/promises"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const dataBasePath = new URL('../mockDb/db.txt', import.meta.url);
-exports.dataBasePath = dataBasePath;
 async function readUserFromFile() {
   try {
     const data = await _promises.default.readFile(dataBasePath, 'utf-8');
@@ -19,8 +16,9 @@ async function readUserFromFile() {
     return [];
   }
 }
-async function writeUsersToFile(entities) {
-  _promises.default.writeFile(dataBasePath, JSON.stringify(entities)).catch(error => {
+async function writeUsersToFile(entities, path) {
+  const dataPath = new URL(path, import.meta.url);
+  _promises.default.writeFile(dataPath, JSON.stringify(entities)).catch(error => {
     console.error('Error writing user data:', error);
   });
 }
