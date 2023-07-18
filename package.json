@@ -1,0 +1,24 @@
+{
+  "name": "restful-generic-entity",
+  "version": "1.0.0",
+  "description": "Node simple and agnostic backend lib",
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "build": "babel src -d dist"
+  },
+  "keywords": [],
+  "author": "Raphael Portela",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.22.9"
+  }
+}
