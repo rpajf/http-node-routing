@@ -15,6 +15,7 @@ class Entity {
     this.initEntities();
   }
   async initEntities() {
+    console.log('path passed', this.path);
     await readUserFromFile(this.path);
   }
   generateRandomId() {
