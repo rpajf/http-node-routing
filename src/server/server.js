@@ -8,6 +8,8 @@ const port = process.env.PORT || 3000;
 function injectAttrsReq(method){
 
 }
+// injetar um metodo com cada verbo
+// - get post put 
 const router = new Router()
 const server = http.createServer(
 	async (req, res) => {
@@ -16,7 +18,7 @@ const server = http.createServer(
 
 		router.handle(req, res)
 		// example on the usage of the http server
-		// i need to inject the methods in the instance
+	
 		const route = routes.find(
 			(route) => route.method === method && route.path.test(url)
 		);

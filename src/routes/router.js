@@ -9,6 +9,7 @@ const router = require('./route')
  * @public
  */
 
+console.log(methods)
 class Router {
 	constructor(path, handler, method) {
 		this.path = path;
