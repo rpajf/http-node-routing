@@ -50,9 +50,6 @@ export class Entity {
 		console.log(this.entities)
 		await this.persist();
 	}
-	sayHi(){
-		console.log('hello')
-	}
 }
 
 module.exports = Entity

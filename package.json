@@ -7,13 +7,16 @@
   },
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
+    "dev": "node --watch src/server/server.js",
     "build": "babel src -d dist"
   },
   "keywords": [],
   "author": "Raphael Portela",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "methods": "^1.1.2",
+    "pg": "^8.11.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
