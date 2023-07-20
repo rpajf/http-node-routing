@@ -14,6 +14,7 @@ const users = new Entity([], dataBasePath.pathname);
 
 
 
+// this will be handled by the library
 export const routes = [
 	{
 		method: 'POST',

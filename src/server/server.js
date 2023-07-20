@@ -13,10 +13,12 @@ const server = http.createServer(
 	async (req, res) => {
 		await json(req, res);
 		console.log('req',req,res)
-		// const { method, url } = req;
+
 		router.handle(req, res)
+		// example on the usage of the http server
+		// i need to inject the methods in the instance
 		const route = routes.find(
-			(route) => route.method === method && route.path.test(url!)
+			(route) => route.method === method && route.path.test(url)
 		);
 		if (route && req.url) {
 			const routeParams = req.url.match(route.path);
