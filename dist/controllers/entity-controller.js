@@ -15,6 +15,7 @@ class Entity {
     this.initEntities();
   }
   async initEntities() {
+    // will change to handle table from POSTGRES
     await readUserFromFile(this.path);
   }
   generateRandomId() {

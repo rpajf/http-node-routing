@@ -3,9 +3,9 @@
 ## Basic usage
 
 ```javascript
-// import the Entity generic class and
-// route helpers
-const { Entity, IEntity, buildRouteParams, json } = require('crud-lib');
+// import the Entity generic class 
+import {Entity} from 'restful-generic-entity'
+
 
 ```
 ### 2 - Usage example

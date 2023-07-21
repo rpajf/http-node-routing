@@ -8,6 +8,7 @@ export class Entity {
 	}
 
 	async initEntities() {
+		// will change to handle table from POSTGRES
 		await readUserFromFile(this.path);
 	}
 	generateRandomId() {
