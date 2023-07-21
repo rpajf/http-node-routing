@@ -1,9 +1,7 @@
-const methods = require('methods');
-const layer = require('./layer');
-const Routes = require('./route');
+
 
 /**
- * Takes the methods verbs and adds into the instance of server.
+ * Adds http verbs as methods to the instance of this library.
  *
  * @param {String} path
  * @return {Route}

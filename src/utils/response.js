@@ -1,17 +1,11 @@
-function response(res) {
-	function end(chunk) {
-		try {
-			res.writeHead(200, { 'Content-Type': 'text/plain' });
-		} catch (error) {
-			console.log('error');
-		}
-    res.end(chunk)
-		return chunk;
-	}
+function enhanceResponse(res) {
+  res.send = function(data) {
+    if (typeof data === 'object') { 
+      data = JSON.stringify(data);
+      res.setHeader('Content-Type', 'application/json');
+    }
 
-  function send(chunk){
-    const buffer = JSON.parse(Buffer.concat(chunk).toString()) 
-
-    return buffer
-  }
+    res.end(data);
+  };
 }
+module.exports = enhanceResponse

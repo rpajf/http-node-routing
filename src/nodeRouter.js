@@ -10,6 +10,7 @@ function NodeRouter() {
   function mapHandler(req, res){
 
   }
+
 	function listen(port) {
 		const cb = console.log(`listening on ${port}`);
 		http
@@ -18,6 +19,8 @@ function NodeRouter() {
 				// console.log('req',req,res)
         
 				const { method, url } = req;
+        response(res)
+
         router.handleRequest(req, res)
 		
 				console.log('body', req.body);
