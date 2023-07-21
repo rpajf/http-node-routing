@@ -1,6 +1,6 @@
 {
   "name": "restful-generic-entity",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"
