@@ -7,7 +7,7 @@ const app = nodeRouter()
 
 app.listen(port)
 app.get('/', (req, res) => {
-	res.end('hello')
+	res.send('hello')
 })
 app.post('/users', (req, res) => {
 	const user = req.body

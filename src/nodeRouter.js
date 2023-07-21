@@ -34,7 +34,6 @@ function NodeRouter() {
 	}
 	return {
 		listen,
-		handle,
 		get,
 		post,
 		put,

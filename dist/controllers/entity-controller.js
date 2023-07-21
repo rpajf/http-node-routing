@@ -15,7 +15,6 @@ class Entity {
     this.initEntities();
   }
   async initEntities() {
-    console.log('path passed', this.path);
     await readUserFromFile(this.path);
   }
   generateRandomId() {
@@ -55,9 +54,6 @@ class Entity {
     this.entities.splice(entityToFindIndex, 1);
     console.log(this.entities);
     await this.persist();
-  }
-  sayHi() {
-    console.log('hello');
   }
 }
 exports.Entity = Entity;
