@@ -22,6 +22,9 @@ app.post('/users', (req, res) => {
 })
 
 ```
-### in progress...
+
+### still in progress...
+Handle the req.params and req.query
+Finishing the methods put and delete
 Creating the connection with databases (postgres and mysql)
 
