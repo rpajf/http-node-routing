@@ -1,7 +1,0 @@
-
-
-
-
-function injectAttrsReq(req, res){
-
-}

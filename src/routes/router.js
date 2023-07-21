@@ -1,5 +1,3 @@
-
-
 /**
  * Adds http verbs as methods to the instance of this library.
  *
@@ -12,20 +10,17 @@ class Router {
 	routes = [];
 
 	constructor() {
-
 		this.routes = [];
 	}
 
-	
 	handleRequest(req, res) {
 		const { method, url } = req;
-
 
 		const route = this.routes.find((route) => {
 			return route.method === method && route.path === url;
 		});
-		// console.log('route', route);
-    route.handler(req,res)
+
+		route.handler(req, res);
 		return route;
 	}
 	addRoute({ method, path, handler }) {
@@ -37,13 +32,11 @@ class Router {
 	get(path, handler) {
 		this.addRoute({ method: 'GET', path, handler });
 	}
-	put(req, res) {
-		const { method, url } = req;
-		this.method = 'PUT';
+	put(path, handler) {
+		this.addRoute({ method: 'PUT', path, handler });
 	}
-	delete(req, res) {
-		const { method, url } = req;
-		this.method = 'DELETE';
+	delete(path, handler) {
+		this.addRoute({ method: 'DELETE', path, handler });
 	}
 }
 
