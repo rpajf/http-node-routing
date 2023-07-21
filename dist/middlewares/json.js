@@ -1,9 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.json = json;
 async function json(req, res) {
   const buffers = [];
   for await (const chunk of req) {

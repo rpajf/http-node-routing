@@ -1,4 +1,5 @@
 
 
 exports.Entity = require('./dist/controllers/entity-controller')
-exports.json = require('./dist/middlewares/json')
+exports.NodeRouter = require('./dist/nodeRouter')
+// exports.server = require('./dist/middlewares/json')
