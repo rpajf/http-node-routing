@@ -1,13 +1,7 @@
 ## Steps
-### 2 - Config your env variables
-## Basic usage
+### 1 - Config your env variables
+create an .env file with the `port` variable on the root of the project
 
-```javascript
-// import the Entity generic class 
-import {Entity} from 'restful-generic-entity'
-
-
-```
 ### 2 - Usage example
 
 ```javascript
@@ -27,8 +21,7 @@ app.post('/users', (req, res) => {
 	res.send(user)
 })
 
-
-
 ```
-create an .env file with the `port` variable on the root of the project
+### in progress...
+Creating the connection with databases (postgres and mysql)
 
