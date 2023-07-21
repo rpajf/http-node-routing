@@ -2,7 +2,6 @@ import { IncomingMessageWithBody } from '../middlewares/json';
 import { buildRouteParams } from '../utils/buildRouteParams';
 import path from 'path'
 import { dataBasePath } from '../utils/fileFunctions';
-// import { IEntity } from '../types/entity';
 import {Entity} from 'restful-generic-entity'
 import http from 'http';
 
