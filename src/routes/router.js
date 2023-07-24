@@ -24,6 +24,7 @@ class Router {
 		return route;
 	}
 	addRoute({ method, path, handler }) {
+
 		this.routes.push({ method, path, handler });
 	}
 
