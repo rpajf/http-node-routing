@@ -2,14 +2,16 @@ const Router = require('./routes/router');
 
 const http = require('http');
 const json = require('./middlewares/json');
-
+const methods = require('methods')
 const response = require('./utils/response');
 function NodeRouter() {
 	const router = new Router();
 
 	function listen(port) {
 		const cb = console.log(`listening on ${port}`);
-		http
+		try {
+
+			http
 			.createServer(async (req, res) => {
 				await json(req, res);
 
@@ -20,23 +22,24 @@ function NodeRouter() {
 				console.log('body', req.body);
 			})
 			.listen(port, cb);
+		} catch (error) {
+			console.log(error)
+		}
+		
 	}
+	function route(method, path, handler) {
+		router.route(method, path, handler);
+	}
+  const routerFunctions = methods.reduce((obj, method) => {
+    obj[method] = (path, handler) => route(method, path, handler);
+    return obj;
+  }, {});
 
-	function put(path, handle) {
-		router.put(path, handle);
-	}
-	function get(path, handle) {
-		router.get(path, handle);
-	}
 
-	function post(path, handle) {
-		router.post(path, handle);
-	}
 	return {
 		listen,
-		get,
-		post,
-		put,
+		...routerFunctions
+
 	};
 }
 
