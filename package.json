@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "dev": "node --watch src/server.js",
+    "start": "node --watch src/server.js",
     "build": "babel src -d dist"
   },
   "keywords": [],

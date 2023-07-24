@@ -1,4 +1,5 @@
 //example
+require('dotenv').config()
 const nodeRouter = require('./nodeRouter')
 const port = process.env.PORT || 3000;
 
