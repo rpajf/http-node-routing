@@ -1,6 +1,7 @@
+import { IncomingMessageWithBody } from './../middlewares/json';
 import { ServerResponseExtended } from './../types';
 
-// import { ServerResponseExtended } from '../types';
+
 import { IncomingMessage } from 'http';
 import { Route } from '../types';
 import http from 'http'
@@ -19,7 +20,7 @@ export class Router {
 		this.routes = [];
 	}
 
-	async handleRequest(req: IncomingMessage, res: ServerResponseExtended): Promise<Route | undefined> {
+	 handleRequest(req: IncomingMessageWithBody<IncomingMessage>, res: ServerResponseExtended): Route | undefined {
 		const { method, url } = req;
 
 		const route = this.routes.find((route) => {
@@ -28,7 +29,7 @@ export class Router {
 
 		if (route) {
 			console.log('here')
-			await route.handler(req, res);
+			route.handler(req, res);
 			return route;
 		}
 		return route;
@@ -38,7 +39,7 @@ export class Router {
 	}
 
 	route(
-		method: string,
+		method: any,
 		path: string,
 		handler: (req: IncomingMessage, res: ServerResponseExtended) => Promise<void>
 	): void {

@@ -5,7 +5,7 @@ export function enhanceResponse(res: ServerResponseExtended) {
 		if (typeof data === 'object') {
 			console.log('data', data)
 			data = JSON.stringify(data);
-			res.setHeader('Content-Type', 'application/json');
+			// res.setHeader('Content-Type', 'application/json');
 		} else if (typeof data === 'string') {
 			res.setHeader('Content-Type', 'text/plain');
 		}

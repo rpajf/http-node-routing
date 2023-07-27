@@ -4,7 +4,7 @@ import { buildRouteParams } from './utils/buildRouteParams';
 
 import { ServerResponseExtended } from './types';
 import http, { IncomingMessage } from 'http';
-import { json } from './middlewares/json';
+import { IncomingMessageWithBody, json } from './middlewares/json';
 import { enhanceResponse } from './utils/response';
 
 interface NodeRouter {
@@ -16,15 +16,24 @@ interface NodeRouter {
 function NodeRouter() {
 	const router = new Router();
 
-	function listen(port: number) {
+	function listen(port: number, cb:any) {
 		try {
-			http.createServer(async (req, res) => {
-				await json(req, res);
+			http
+				.createServer(async (req, res) => {
+					await json(req, res);
 
-				enhanceResponse(res as ServerResponseExtended);
-				console.log(req);
-				await router.handleRequest(req, res);
-			});
+					enhanceResponse(res as unknown as ServerResponseExtended);
+
+					router.handleRequest(req as IncomingMessageWithBody<IncomingMessage>, res as unknown as ServerResponseExtended);
+				})
+				.listen({ port }, () => {
+					if (cb) {
+						if (typeof cb === 'function') {
+							return cb();
+						}
+						throw new Error('Listen callback needs to be a function');
+					}
+				});
 		} catch (error) {
 			console.log(error);
 		}
@@ -32,7 +41,7 @@ function NodeRouter() {
 	function route(
 		method: string,
 		path: string,
-		handler: (req: IncomingMessage, res: ServerResponseExtended) => void
+		handler: (req: IncomingMessageWithBody<IncomingMessage>, res: ServerResponseExtended) => void
 	) {
 		path = buildRouteParams(path);
 		router.route(method, path, handler);
@@ -48,11 +57,8 @@ function NodeRouter() {
 	);
 	// console.log('routerfunc',routerFunctions)
 	return {
-		listen: (port: number) => {
-			listen(port);
-			console.log(`listening on ${port}`);
-		},
-		routes: { ...routerFunctions },
+		listen,
+		routes: routerFunctions,
 	};
 }
 
