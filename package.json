@@ -7,8 +7,8 @@
   },
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "start": "ts-node src/server.ts",
-    "build": "babel src -d dist"
+    "start": "ts-node --esm src/server.ts",
+    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\""
   },
   "keywords": [],
   "author": "Raphael Portela",

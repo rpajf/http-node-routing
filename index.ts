@@ -1,5 +1,7 @@
 
 
-exports.Entity = require('./dist/controllers/entity-controller')
-exports.NodeRouter = require('./dist/nodeRouter')
-// exports.server = require('./dist/middlewares/json')
+import NodeRouter from './src/nodeRouter'
+export default NodeRouter
+// export default Entity = require('./dist/controllers/entity-controller')
+// exports.NodeRouter = require('./dist/nodeRouter')
+

@@ -19,7 +19,7 @@ export class Router {
 		this.routes = [];
 	}
 
-	handleRequest(req: IncomingMessage, res: ServerResponseExtended): Route | undefined {
+	async handleRequest(req: IncomingMessage, res: ServerResponseExtended): Promise<Route | undefined> {
 		const { method, url } = req;
 
 		const route = this.routes.find((route) => {
@@ -27,7 +27,8 @@ export class Router {
 		});
 
 		if (route) {
-			route.handler(req, res);
+			console.log('here')
+			await route.handler(req, res);
 			return route;
 		}
 		return route;

@@ -1,13 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2017",   
-    "module": "commonjs", 
-    "outDir": "./dist", 
-    "strict": true,
+    
+    /* Modules */
+    "module": "CommonJS",     
+    "target": "ES2020",
+ 
+    "baseUrl": "./", 
+    "moduleResolution": "Node",    
+                                /* Specify the base directory to resolve non-relative module names. */                                /* Specify a set of entries that re-map imports to additional lookup 
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "sourceMap": true,
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "outDir": "dist",
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules"
+  ]
 }
