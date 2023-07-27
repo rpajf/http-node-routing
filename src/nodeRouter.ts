@@ -1,43 +1,50 @@
-const Router = require('./routes/router');
-const methods = require('methods');
-const buildRouteParams = require('../src/utils/buildRouteParams')
-const http = require('http');
-const json = require('./middlewares/json');
-const response = require('./utils/response');
+import { Router } from './routes/router';
+import { RouteFunction, methods } from './types';
+import { buildRouteParams } from './utils/buildRouteParams';
+
+import { ServerResponseExtended } from './types';
+import http, { IncomingMessage } from 'http';
+import { json } from './middlewares/json';
+import { enhanceResponse } from './utils/response';
 function NodeRouter() {
 	const router = new Router();
 
-	function listen(port) {
-		const cb = console.log(`listening on ${port}`);
+	function listen(port: number) {
+		// const cb = console.log(`listening on ${port}`);
 		try {
 			http
 				.createServer(async (req, res) => {
 					await json(req, res);
 
-					response(res);
+					enhanceResponse(res as ServerResponseExtended);
 
 					router.handleRequest(req, res);
 				})
-				.listen(port, cb);
+				.listen(port);
 		} catch (error) {
 			console.log(error);
 		}
+		console.log(`listening on ${port}`);
 	}
-	function route(method, path, handler) {
-		path = buildRouteParams(path)
+	function route(
+		method: string,
+		path: string,
+		handler: (req: IncomingMessage, res: ServerResponseExtended) => Promise<void>
+	) {
+		path = buildRouteParams(path);
 		router.route(method, path, handler);
 	}
 
-	const routerFunctions = methods.reduce((obj, method) => {
-		obj[method] = (path, handler) => route(method, path, handler);
+	const routerFunctions = methods.reduce<Record<string, RouteFunction>>((obj, method) => {
+		obj[method] = (path: string, handler) => route(method, path, handler);
 
 		return obj;
-	}, {});		
-
+	}, {});
+	console.log('routerfunc',routerFunctions)
 	return {
 		listen,
 		...routerFunctions,
 	};
 }
 
-module.exports = NodeRouter;
+export default NodeRouter

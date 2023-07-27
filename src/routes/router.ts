@@ -1,3 +1,9 @@
+import { ServerResponseExtended } from './../types';
+
+// import { ServerResponseExtended } from '../types';
+import { IncomingMessage } from 'http';
+import { Route } from '../types';
+import http from 'http'
 /**
  * Adds http verbs as methods to the instance of this library.
  *
@@ -6,31 +12,35 @@
  * @public
  */
 
-class Router {
-	routes = [];
+export class Router {
+	private routes: Route[];
 
 	constructor() {
 		this.routes = [];
 	}
 
-	handleRequest(req, res) {
+	handleRequest(req: IncomingMessage, res: ServerResponseExtended): Route | undefined {
 		const { method, url } = req;
 
 		const route = this.routes.find((route) => {
 			return route.method === method && route.path === url;
 		});
 
-		route.handler(req, res);
+		if (route) {
+			route.handler(req, res);
+			return route;
+		}
 		return route;
 	}
-	addRoute({ method, path, handler }) {
-
-		this.routes.push({ method, path, handler });
+	public addRoute(route: Route) {
+		this.routes.push(route);
 	}
 
-	route(method, path, handler) {
+	route(
+		method: string,
+		path: string,
+		handler: (req: IncomingMessage, res: ServerResponseExtended) => Promise<void>
+	): void {
 		this.addRoute({ method: method.toUpperCase(), path, handler });
 	}
 }
-
-module.exports = Router;

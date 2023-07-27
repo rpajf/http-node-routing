@@ -1,5 +1,4 @@
 import http from 'http';
-
 export interface IncomingMessageWithBody<T> extends http.IncomingMessage {
 
   params?: { [key: string]: string };
