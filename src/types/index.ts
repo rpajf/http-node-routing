@@ -18,7 +18,7 @@ export interface IEntity {
 }
 
 export interface ServerResponseExtended extends http.ServerResponse {
-	send: (data: string | object) => http.ServerResponse;
+	send: (data: string | object) => http.ServerResponse | undefined;
 }
 export type Method = typeof methods;
 export const methods: string[] = methodsRaw as string[];

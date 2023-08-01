@@ -8,5 +8,3 @@ export const buildRouteParams = (path: string) => {
 
 	return pathRegex;
 };
-
-

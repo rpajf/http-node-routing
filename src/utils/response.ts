@@ -1,14 +1,23 @@
 import { ServerResponseExtended } from './../types';
 
+
 export function enhanceResponse(res: ServerResponseExtended) {
 	res.send = function (data) {
-		if (typeof data === 'object') {
-			console.log('data', data)
-			data = JSON.stringify(data);
-			// res.setHeader('Content-Type', 'application/json');
-		} else if (typeof data === 'string') {
-			res.setHeader('Content-Type', 'text/plain');
-		}
-		return res.end(data);
+			try {
+					if (typeof data === 'object') {
+							data = JSON.stringify(data);
+					} 
+					return res.end(data);
+			} catch (err) {
+					console.error('Error enhancing response:', err);
+					// Send a 500 error
+					res.statusCode = 500;
+					res.end(JSON.stringify({ error: 'An error occurred while processing your request.' }));
+			}
 	};
 }
+
+
+
+
+
