@@ -1,9 +1,13 @@
-const {readUserFromFile, writeUsersToFile}= require('../utils/fileFunctions')
+import { readUserFromFile, writeUsersToFile } from 'src/utils/fileFunctions';
+import { IEntity } from 'src/types';
 
-export class Entity {
-	constructor(entities=[], path) {
+export class Entity<T extends IEntity> {
+	private entities: T[];
+	public path: string;
+
+	constructor(entities: T[] = [], path: string) {
 		this.entities = entities;
-		this.path = path
+		this.path = path;
 		this.initEntities();
 	}
 
@@ -13,10 +17,10 @@ export class Entity {
 	}
 	generateRandomId() {
 		const id = Math.floor(Math.random() * 10) + 1;
-		return id;
+		return id.toString();
 	}
-	async create(entity) {
-		const newEntity = { id: this.generateRandomId(), ...entity }
+	async create(entity: Omit<T, 'id'>) {
+		const newEntity: T = { id: this.generateRandomId(), ...entity } as T;
 		this.entities.push(newEntity);
 		await this.persist();
 	}
@@ -26,7 +30,7 @@ export class Entity {
 	async persist() {
 		await writeUsersToFile(this.entities, this.path);
 	}
-	async edit(id, newEntityData) {
+	async edit(id: string, newEntityData: Partial<IEntity>) {
 		const entityToFindIndex = this.entities.findIndex(
 			(newEntity) => newEntity.id === id
 		);
@@ -39,16 +43,15 @@ export class Entity {
 		};
 		await this.persist();
 	}
-	async delete(id) {
+	async delete(id: string) {
 		const entityToFindIndex = this.entities.findIndex(
 			(newEntity) => newEntity.id === id
 		);
 		if (entityToFindIndex === -1) {
 			throw new Error('Entity not found');
 		}
-		this.entities.splice(entityToFindIndex, 1)
-		console.log(this.entities)
+		this.entities.splice(entityToFindIndex, 1);
+		console.log(this.entities);
 		await this.persist();
 	}
 }
-

@@ -11,6 +11,12 @@ import { IncomingMessageWithBody } from 'src/middlewares/json';
 // 		res: http.ServerResponse
 // 	) => Promise<void>;
 // }
+
+export interface IEntity {
+	id: string;
+	[key: string]: unknown;
+}
+
 export interface ServerResponseExtended extends http.ServerResponse {
 	send: (data: string | object) => http.ServerResponse;
 }
