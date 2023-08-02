@@ -7,11 +7,12 @@
   },
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "start": "node --watch src/server.js",
-    "build": "babel src -d dist"
+    "start": "ts-node --esm src/server.ts",
+    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\""
   },
   "keywords": [],
   "author": "Raphael Portela",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -19,9 +20,10 @@
     "pg": "^8.11.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.22.9"
+    "@types/methods": "^1.1.1",
+    "@types/node": "^20.4.5",
+    "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
   }
 }

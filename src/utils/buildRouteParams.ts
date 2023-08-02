@@ -1,4 +1,5 @@
-const buildRouteParams = (path) => {
+
+export const buildRouteParams = (path: string) => {
 	const routeParamsRegex = /:([a-zA-Z]+)/g;
 
 	const pathWithParams = path.replace(routeParamsRegex, '(?<$1>[a-z0-9-_]+)');
@@ -7,5 +8,3 @@ const buildRouteParams = (path) => {
 
 	return pathRegex;
 };
-
-module.exports = buildRouteParams
