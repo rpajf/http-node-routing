@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import nodeRouter from './nodeRouter';
 
-const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const port = process.env.PORT || 3000;
 
 const app = nodeRouter();
 type UserRequestBody = {
@@ -13,13 +13,16 @@ type UserRequestBody = {
 app.listen(port, console.log('listen on 3333'));
 
 let users: any = [];
+app.get('/users', (req, res) => {
+	res.send('hello');
+});
 app.get('/', (req, res) => {
 	res.send('hello');
 });
-
 app.post('/users', (req, res) => {
 	console.log(req.body);
 	const user = req.body;
+	users.push(user)
 	res.send(user!);
 });
 
