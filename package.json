@@ -1,6 +1,6 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"

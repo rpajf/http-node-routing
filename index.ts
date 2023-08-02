@@ -1,2 +1,2 @@
-import NodeRouter from './src/nodeRouter'
-export default NodeRouter
+import NodeRouter = require('./src/nodeRouter');
+export = NodeRouter;
