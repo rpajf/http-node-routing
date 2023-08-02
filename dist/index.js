@@ -1,4 +1,4 @@
 "use strict";
-const NodeRouter = require("./src/nodeRouter");
-module.exports = NodeRouter;
+const nodeRouter_1 = require("./src/nodeRouter");
+module.exports = nodeRouter_1.createNodeRouter;
 //# sourceMappingURL=index.js.map

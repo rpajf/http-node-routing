@@ -12,11 +12,12 @@ interface NodeRouter {
 	routes: Record<string, RouteFunction>;
 }
 
-function NodeRouter() {
+export function createNodeRouter() {
 	const router = new Router();
 
 	function listen(port: number | string, cb: any) {
-		const _port = typeof port === 'number' ? port : parseInt(port as string, 10);
+		const _port =
+			typeof port === 'number' ? port : parseInt(port as string, 10);
 
 		try {
 			http
@@ -71,5 +72,3 @@ function NodeRouter() {
 		patch,
 	};
 }
-
-export default NodeRouter;

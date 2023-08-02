@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import nodeRouter from './nodeRouter';
+import {createNodeRouter} from './nodeRouter';
 
 const port = process.env.PORT || 3000;
 
-const app = nodeRouter();
+const app = createNodeRouter();
 type UserRequestBody = {
 	name?: string;
 	password?: string;

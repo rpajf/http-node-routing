@@ -1,2 +1,2 @@
-import NodeRouter = require('./src/nodeRouter');
-export = NodeRouter;
+import { createNodeRouter } from './src/nodeRouter';
+export = createNodeRouter;

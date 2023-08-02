@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createNodeRouter = void 0;
 const router_1 = require("./routes/router");
 const types_1 = require("./types");
 const buildRouteParams_1 = require("./utils/buildRouteParams");
 const http_1 = __importDefault(require("http"));
 const json_1 = require("./middlewares/json");
 const response_1 = require("./utils/response");
-function NodeRouter() {
+function createNodeRouter() {
     const router = new router_1.Router();
     function listen(port, cb) {
         const _port = typeof port === 'number' ? port : parseInt(port, 10);
@@ -51,5 +52,5 @@ function NodeRouter() {
         patch,
     };
 }
-exports.default = NodeRouter;
+exports.createNodeRouter = createNodeRouter;
 //# sourceMappingURL=nodeRouter.js.map
