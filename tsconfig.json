@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "ES2020",                          
     "module": "CommonJS",
     "outDir": "./dist",
@@ -19,7 +18,6 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.js.map",
+    "**/*.test.ts"
   ]
 }
