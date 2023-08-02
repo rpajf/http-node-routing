@@ -19,11 +19,11 @@ create an .env file with the `port` variable on the root of the project
 
 ```javascript
 
-import nodeRouter from './nodeRouter';
+import router from 'http-node-routing'
 
 const port = process.env.PORT || 3000;
 
-const app = nodeRouter()
+const app = router()
 
 app.listen(port, () => console.log(`listening on ${port}`))
 app.get('/', (req, res) => {
