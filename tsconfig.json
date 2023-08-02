@@ -12,9 +12,8 @@
     "forceConsistentCasingInFileNames": true, 
     "skipLibCheck": true,
     
-    /* Advanced Options */
-    "resolveJsonModule": true,  // This allows TypeScript to handle JSON files
-    "sourceMap": true,          // Creates corresponding .map file.
+    "resolveJsonModule": true,  
+    "sourceMap": true, 
   },
   "include": [
     "src/**/*.ts"

@@ -37,7 +37,7 @@ app.post('/users', (req, res) => {
 ```
 or clone the repo
 ```javascript
-git clone https://github.com/rpajf/http-node-router.git
+git clone https://github.com/rpajf/http-node-routing
 ```
 ### still in progress...
 Handle the req.params and req.query
