@@ -1,6 +1,6 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"
@@ -12,6 +12,10 @@
   },
   "keywords": [],
   "author": "Raphael Portela",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rpajf/http-node-routing.git"
+  },
   "license": "ISC",
   "main": "dist/index.js",  
   "dependencies": {
