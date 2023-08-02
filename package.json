@@ -12,7 +12,6 @@
   },
   "keywords": [],
   "author": "Raphael Portela",
-  "type": "module",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",

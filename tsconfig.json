@@ -1,25 +1,27 @@
 {
   "compilerOptions": {
-    
-    /* Modules */
-    "module": "ES2022",     
-    // "target": "ES2020",
- 
-    "baseUrl": "./", 
-    "moduleResolution": "Node",    
-                                /* Specify the base directory to resolve non-relative module names. */                                /* Specify a set of entries that re-map imports to additional lookup 
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    /* Basic Options */
+    "target": "ES2020",                          
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
     "esModuleInterop": true,
-    "sourceMap": true,
-    /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
-    "outDir": "dist",
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "forceConsistentCasingInFileNames": true, 
+    "skipLibCheck": true,
+    
+    /* Advanced Options */
+    "resolveJsonModule": true,  // This allows TypeScript to handle JSON files
+    "sourceMap": true,          // Creates corresponding .map file.
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

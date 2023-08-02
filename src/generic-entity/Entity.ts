@@ -1,4 +1,3 @@
-import { readUserFromFile, writeUsersToFile } from 'src/utils/fileFunctions';
 import { IEntity } from 'src/types';
 
 export class Entity<T extends IEntity> {
@@ -13,7 +12,7 @@ export class Entity<T extends IEntity> {
 
 	async initEntities() {
 		// will change to handle table from POSTGRES
-		await readUserFromFile(this.path);
+		// await readUserFromFile(this.path);
 	}
 	generateRandomId() {
 		const id = Math.floor(Math.random() * 10) + 1;
@@ -28,7 +27,8 @@ export class Entity<T extends IEntity> {
 		return this.entities;
 	}
 	async persist() {
-		await writeUsersToFile(this.entities, this.path);
+		// database table persist method
+		// await writeUsersToFile(this.entities, this.path);
 	}
 	async edit(id: string, newEntityData: Partial<IEntity>) {
 		const entityToFindIndex = this.entities.findIndex(
