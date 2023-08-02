@@ -1,6 +1,6 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"
@@ -13,6 +13,7 @@
   "keywords": [],
   "author": "Raphael Portela",
   "license": "ISC",
+  "main": "index.ts",
   "dependencies": {
     "dotenv": "^16.3.1",
     "methods": "^1.1.2",
