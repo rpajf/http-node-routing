@@ -10,10 +10,6 @@
     "start": "ts-node --esm src/server.ts",
     "dev": "npx tsc-watch --onSuccess \"node dist/server.js\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rpajf/http-node-router"
-  },
   "keywords": [],
   "author": "Raphael Portela",
   "type": "module",
