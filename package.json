@@ -1,19 +1,19 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"
   },
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "start": "ts-node --esm src/server.ts",
-    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\""
+    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\"",
+    "prepublish": "tsc"
   },
   "keywords": [],
   "author": "Raphael Portela",
   "license": "ISC",
-  "main": "index.ts",
+  "main": "dist/index.js",  
   "dependencies": {
     "dotenv": "^16.3.1",
     "methods": "^1.1.2",
