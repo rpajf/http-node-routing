@@ -8,7 +8,7 @@ export async function json<T>(
 	req: IncomingMessageWithBody<T>,
 	res: http.ServerResponse
 ) {
-	if (req.method !== 'GET' || 'DELETE') {
+	if (req.method !== 'GET' && req.method !== 'DELETE') {
 		const buffers: Buffer[] = [];
 		for await (const chunk of req) {
 			buffers.push(chunk);
@@ -17,6 +17,7 @@ export async function json<T>(
 		if (jsonString !== '') {
 			try {
 				req.body = JSON.parse(jsonString);
+				res.setHeader('Content-Type', 'application/json');
 			} catch (error) {
 				console.error('Error parsing request body:', error);
 				// Send a 400 Bad Request error to the client
@@ -26,6 +27,4 @@ export async function json<T>(
 			}
 		}
 	}
-
-	res.setHeader('Content-Type', 'application/json');
 }

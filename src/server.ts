@@ -10,7 +10,7 @@ type UserRequestBody = {
 	password?: string;
 };
 
-app.listen(port, console.log('listen on 3333'));
+app.listen(port, () => console.log(`listening on ${port}`));
 
 let users: any = [];
 app.get('/users', (req, res) => {
