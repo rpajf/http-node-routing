@@ -1,6 +1,5 @@
 import { ServerResponseExtended } from './../types';
 
-
 export function enhanceResponse(res: ServerResponseExtended) {
 	res.send = function (data) {
 			try {
@@ -10,7 +9,6 @@ export function enhanceResponse(res: ServerResponseExtended) {
 					return res.end(data);
 			} catch (err) {
 					console.error('Error enhancing response:', err);
-					// Send a 500 error
 					res.statusCode = 500;
 					res.end(JSON.stringify({ error: 'An error occurred while processing your request.' }));
 			}

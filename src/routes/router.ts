@@ -1,16 +1,7 @@
 import { IncomingMessageWithBody } from './../middlewares/json';
 import { ServerResponseExtended } from './../types';
-import { buildRouteParams } from 'src/utils/buildRouteParams';
 import { IncomingMessage } from 'http';
 import { Route } from '../types';
-
-/**
- * Adds http verbs as methods to the instance of this library.
- *
- * @param {String} path
- * @return {Route}
- * @public
- */
 
 export class Router {
 	private routes: Route[];
@@ -22,21 +13,40 @@ export class Router {
 	handleRequest(
 		req: IncomingMessageWithBody<IncomingMessage>,
 		res: ServerResponseExtended
-	): Route | undefined {
+	): void {
 		const { method, url } = req;
-		const route = this.routes.find((route) => {
-			console.log('route path', route?.path, { url });
-			// console.log();
-			return route.method === method && route.path === url;
-		});
-		// console.log('route', route);
+
+		const matchedRoute = this.routes
+			.map((route) => {
+				if (route.method === method && route.path instanceof RegExp && url) {
+					const match = route.path.exec(url);
+					if (match) {
+						return {
+							route: route,
+							params: match.groups,
+						};
+					}
+				} else if (
+					route.method === method &&
+					typeof route.path === 'string' &&
+					route.path === url
+				) {
+					return {
+						route: route,
+						params: {},
+					};
+				}
+			})
+			.find((matched) => matched !== undefined);
+
 		try {
-			if (route) {
-				console.log('here');
-				route.handler(req, res);
-				return route;
+			if (matchedRoute) {
+				req.params = matchedRoute.params;
+				matchedRoute.route.handler(req, res);
+			} else {
+				res.statusCode = 404;
+				res.send({ error: 'Route not found' });
 			}
-			return route;
 		} catch (error) {
 			console.log(`Error during request, ${error}`);
 			res.statusCode = 500;
@@ -49,14 +59,9 @@ export class Router {
 
 	route(
 		method: string,
-		path: string,
-		handler: (
-			req: IncomingMessage,
-			res: ServerResponseExtended
-		) => Promise<void>
+		path: RegExp,
+		handler: (req: IncomingMessage, res: ServerResponseExtended) => void
 	): void {
-		// console.log()
-		console.log('on route method', method, { handler }, path);
 		this.addRoute({ method: method.toUpperCase(), path, handler });
 	}
 }

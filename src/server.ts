@@ -5,24 +5,36 @@ import nodeRouter from './nodeRouter';
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const app = nodeRouter();
+type UserRequestBody = {
+	name?: string;
+	password?: string;
+};
 
 app.listen(port, console.log('listen on 3333'));
 
-app.get('/', (req:any, res:any) => {
+let users: any = [];
+app.get('/', (req, res) => {
 	res.send('hello');
 });
 
 app.post('/users', (req, res) => {
-	// console.log(req, res)
-	console.log(req.body)
+	console.log(req.body);
 	const user = req.body;
 	res.send(user!);
 });
 
 app.put('/users/:id', (req, res) => {
-	// console.log(req, res)
+	const userProps = req.params;
+	const { name, password }: UserRequestBody = req.body as UserRequestBody;
 
-	console.log(req.body)
-	const user = req.body;
-	res.send(user!);
+	const index = users.findIndex(
+		(user: { id: string | undefined }) => user.id === userProps?.id
+	);
+	if (index === -1) {
+		res.end(404).send({ error: 'User not found' });
+		return;
+	}
+
+	users[index] = { id: userProps?.id, name, password };
+	res.send(users[index]);
 });

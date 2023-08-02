@@ -51,7 +51,6 @@ export class Entity<T extends IEntity> {
 			throw new Error('Entity not found');
 		}
 		this.entities.splice(entityToFindIndex, 1);
-		console.log(this.entities);
 		await this.persist();
 	}
 }

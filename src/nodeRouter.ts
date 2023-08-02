@@ -6,12 +6,10 @@ import { ServerResponseExtended } from './types';
 import http, { IncomingMessage } from 'http';
 import { IncomingMessageWithBody, json } from './middlewares/json';
 import { enhanceResponse } from './utils/response';
-import { ChildProcess } from 'child_process';
 
 interface NodeRouter {
 	listen: (port: number) => void;
 	routes: Record<string, RouteFunction>;
-	// Add other methods (put, delete, etc.) if needed
 }
 
 function NodeRouter() {
@@ -43,16 +41,13 @@ function NodeRouter() {
 	}
 	function route(
 		method: string,
-		path: string,
+		path: RegExp | string,
 		handler: (
 			req: IncomingMessageWithBody<IncomingMessage>,
 			res: ServerResponseExtended
 		) => void
 	) {
-		console.log('path on route fn', path);
-		// const routeParams = path.replace(/[^a-zA-Z0-9 ]/g, '');
-		// console.log( routeParams);
-		// console.log('changed path', buildRouteParams(path));
+		path = buildRouteParams(path as string);
 		return router.route(method, path, handler);
 	}
 
@@ -63,10 +58,15 @@ function NodeRouter() {
 		},
 		{}
 	);
+	const { get, post, delete: del, put, patch } = routerFunctions;
 
 	return {
 		listen,
-		...routerFunctions,
+		post,
+		get,
+		delete: del,
+		put,
+		patch,
 	};
 }
 
