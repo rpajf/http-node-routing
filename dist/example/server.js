@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const nodeRouter_1 = require("./nodeRouter");
+const nodeRouter_1 = require("../nodeRouter");
 const port = process.env.PORT || 3000;
 const app = (0, nodeRouter_1.createNodeRouter)();
 app.listen(port, () => console.log(`listening on ${port}`));
