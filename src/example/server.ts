@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import {createNodeRouter} from './nodeRouter';
+import {createNodeRouter} from '../nodeRouter';
 
 const port = process.env.PORT || 3000;
 

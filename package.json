@@ -1,6 +1,6 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Node simple and agnostic backend lib",
   "engines": {
     "node": ">=14.15.0"
@@ -17,7 +17,7 @@
     "url": "https://github.com/rpajf/http-node-routing.git"
   },
   "license": "ISC",
-  "main": "dist/index.js",  
+  "main": "dist/src/index.js",  
   "dependencies": {
     "dotenv": "^16.3.1",
     "methods": "^1.1.2",
