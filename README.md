@@ -11,6 +11,12 @@ install dotenv
 ```javascript
 npm install dotenv
 ```
+inside the file that you instance the server
+```javascript
+import dotenv from 'dotenv';
+dotenv.config();
+```
+
 ### 1 - Config your env variables
 
 create an .env file with the `port` variable on the root of the project
