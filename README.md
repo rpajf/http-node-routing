@@ -40,7 +40,7 @@ or clone the repo
 git clone https://github.com/rpajf/http-node-routing
 ```
 ### still in progress...
-Handle the req.params and req.query
-Finishing the methods put and delete
-Creating the connection with databases (postgres and mysql)
+### next steps: 
+- Handle the req.params and req.query 
+- Creating the connection with databases (postgres and mysql)
 
