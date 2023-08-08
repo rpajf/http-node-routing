@@ -16,13 +16,6 @@ type connectionObj = {
 	port?: string;
 };
 
-export const connectDb = async ({ connectionObj }: any) => {
-	const { user, host, database, password, port } = connectionObj;
-	const client = new Client({ user, host, database, password, port });
-	await client.connect();
-	console.log('connected');
-};
-
 export const databaseFunctions = async (connectionObj: connectionObj) => {
 	const { user, host, database, password, port } = connectionObj;
 	const numericPort = parseInt(port!, 10);
