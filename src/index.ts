@@ -1,2 +1,8 @@
+
 import { createNodeRouter } from './nodeRouter';
-export = createNodeRouter;
+import {databaseFunctions
+} from 'src/connection';
+export {
+  createNodeRouter,
+  databaseFunctions
+};

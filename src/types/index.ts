@@ -29,3 +29,14 @@ export type RouteFunction = (
 		res: ServerResponseExtended
 	) => void
 ) => void;
+
+type RelationalFunction<T extends any[] = any[], R = any> = (...args: T) => Promise<R>;
+//defining generic type parameters and a generic return
+
+export type GetAllFunction = RelationalFunction<[table: string], Record<string, any>[]>;
+
+export type InsertFunction = RelationalFunction<[table: string, columns: string[], values: any[]], void>;
+
+export type UpdateFunction = RelationalFunction<[table: string, columns: string[], values: any[], condition: string], void>;
+
+export type DeleteFunction = RelationalFunction<[table: string, condition: string], void>;

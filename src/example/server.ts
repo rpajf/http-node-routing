@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 
-import { insertIntoTable, connectDb } from 'src/connection/connection';
+import { databaseFunctions } from 'src/connection';
+
 import { createNodeRouter } from '../nodeRouter';
 dotenv.config();
 
@@ -11,17 +12,31 @@ type UserRequestBody = {
 	name?: string;
 	password?: string;
 };
+const connection = {
+	user: process.env.PG_USER,
+	host: process.env.HOST,
+	password: process.env.PASSWORD,
+	database: process.env.DATABASE,
+	port: process.env.DB_PORT,
+};
+
+const { connectDb, getAllRegistersFromTable, insertIntoTable } =
+	await databaseFunctions(connection);
 
 app.listen(port, () => console.log(`listening on ${port}`));
 
 let users: any = [];
 connectDb();
-app.get('/users', (req, res) => {
-	res.send('hello');
+
+app.get('/users', async (req, res) => {
+	const registers = await getAllRegistersFromTable('users');
+	res.send(registers);
 });
+
 app.get('/', (req, res) => {
 	res.send('hello');
 });
+
 app.post('/users', (req, res) => {
 	const { id, name, password } = req.body!;
 	const columns = ['id', 'name', 'password'];

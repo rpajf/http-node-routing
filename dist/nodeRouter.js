@@ -1,24 +1,18 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createNodeRouter = void 0;
-const router_1 = require("./routes/router");
-const types_1 = require("./types");
-const buildRouteParams_1 = require("./utils/buildRouteParams");
-const http_1 = __importDefault(require("http"));
-const json_1 = require("./middlewares/json");
-const response_1 = require("./utils/response");
-function createNodeRouter() {
-    const router = new router_1.Router();
+import { Router } from './routes/router';
+import { methods } from './types';
+import { buildRouteParams } from './utils/buildRouteParams';
+import http from 'http';
+import { json } from './middlewares/json';
+import { enhanceResponse } from './utils/response';
+export function createNodeRouter() {
+    const router = new Router();
     function listen(port, cb) {
         const _port = typeof port === 'number' ? port : parseInt(port, 10);
         try {
-            http_1.default
+            http
                 .createServer(async (req, res) => {
-                await (0, json_1.json)(req, res);
-                (0, response_1.enhanceResponse)(res);
+                await json(req, res);
+                enhanceResponse(res);
                 router.handleRequest(req, res);
             })
                 .listen({ port }, () => {
@@ -35,10 +29,10 @@ function createNodeRouter() {
         }
     }
     function route(method, path, handler) {
-        path = (0, buildRouteParams_1.buildRouteParams)(path);
+        path = buildRouteParams(path);
         return router.route(method, path, handler);
     }
-    const routerFunctions = types_1.methods.reduce((obj, method) => {
+    const routerFunctions = methods.reduce((obj, method) => {
         obj[method] = (path, handler) => route(method, path, handler);
         return obj;
     }, {});
@@ -52,5 +46,4 @@ function createNodeRouter() {
         patch,
     };
 }
-exports.createNodeRouter = createNodeRouter;
 //# sourceMappingURL=nodeRouter.js.map

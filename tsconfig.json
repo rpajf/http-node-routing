@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                          
-    "module": "CommonJS",
+    "target": "ES2017",                          
+    "module": "esnext",
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true, 
     "skipLibCheck": true,
-    
     "resolveJsonModule": true,  
     "sourceMap": true, 
   },

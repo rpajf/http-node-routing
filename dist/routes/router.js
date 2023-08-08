@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Router = void 0;
-class Router {
+export class Router {
     constructor() {
         this.routes = [];
     }
@@ -51,5 +48,4 @@ class Router {
         this.addRoute({ method: method.toUpperCase(), path, handler });
     }
 }
-exports.Router = Router;
 //# sourceMappingURL=router.js.map

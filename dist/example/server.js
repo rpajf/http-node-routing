@@ -1,36 +1,42 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const nodeRouter_1 = require("../nodeRouter");
+import dotenv from 'dotenv';
+import { databaseFunctions } from 'src/connection';
+import { createNodeRouter } from '../nodeRouter';
+dotenv.config();
 const port = process.env.PORT || 3000;
-const app = (0, nodeRouter_1.createNodeRouter)();
+const app = createNodeRouter();
+const connection = {
+    user: process.env.PG_USER,
+    host: process.env.HOST,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    port: process.env.DB_PORT,
+};
+const { connectDb, getAllRegistersFromTable, insertIntoTable } = await databaseFunctions(connection);
 app.listen(port, () => console.log(`listening on ${port}`));
 let users = [];
-app.get('/users', (req, res) => {
-    res.send('hello');
+connectDb();
+app.get('/users', async (req, res) => {
+    const registers = await getAllRegistersFromTable('users');
+    res.send(registers);
 });
 app.get('/', (req, res) => {
     res.send('hello');
 });
 app.post('/users', (req, res) => {
-    console.log(req.body);
-    const user = req.body;
-    users.push(user);
-    res.send(user);
+    const { id, name, password } = req.body;
+    const columns = ['id', 'name', 'password'];
+    const valuesToInsert = [id, name, password];
+    insertIntoTable('users', columns, valuesToInsert);
 });
 app.put('/users/:id', (req, res) => {
     const userProps = req.params;
     const { name, password } = req.body;
-    const index = users.findIndex((user) => user.id === userProps?.id);
+    const index = users.findIndex((user) => user.id === (userProps === null || userProps === void 0 ? void 0 : userProps.id));
     if (index === -1) {
         res.end(404).send({ error: 'User not found' });
         return;
     }
-    users[index] = { id: userProps?.id, name, password };
+    users[index] = { id: userProps === null || userProps === void 0 ? void 0 : userProps.id, name, password };
     res.send(users[index]);
 });
 //# sourceMappingURL=server.js.map

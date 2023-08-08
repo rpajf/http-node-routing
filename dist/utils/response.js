@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.enhanceResponse = void 0;
-function enhanceResponse(res) {
+export function enhanceResponse(res) {
     res.send = function (data) {
         try {
             if (typeof data === 'object') {
@@ -16,5 +13,4 @@ function enhanceResponse(res) {
         }
     };
 }
-exports.enhanceResponse = enhanceResponse;
 //# sourceMappingURL=response.js.map
