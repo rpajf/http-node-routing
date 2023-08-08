@@ -51,6 +51,7 @@ export function createNodeRouter() {
 		) => void
 	) {
 		path = buildRouteParams(path as string);
+
 		return router.route(method, path, handler);
 	}
 

@@ -1,7 +1,7 @@
 import http from 'http';
 export interface IncomingMessageWithBody<T> extends http.IncomingMessage {
 	params?: { [key: string]: string };
-	body?: T | null;
+	body?: Record<string, any>;
 }
 
 export async function json<T>(

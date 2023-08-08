@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
+
+import { insertIntoTable, connectDb } from 'src/connection/connection';
+import { createNodeRouter } from '../nodeRouter';
 dotenv.config();
-import {createNodeRouter} from '../nodeRouter';
 
 const port = process.env.PORT || 3000;
 
@@ -13,6 +15,7 @@ type UserRequestBody = {
 app.listen(port, () => console.log(`listening on ${port}`));
 
 let users: any = [];
+connectDb();
 app.get('/users', (req, res) => {
 	res.send('hello');
 });
@@ -20,10 +23,10 @@ app.get('/', (req, res) => {
 	res.send('hello');
 });
 app.post('/users', (req, res) => {
-	console.log(req.body);
-	const user = req.body;
-	users.push(user)
-	res.send(user!);
+	const { id, name, password } = req.body!;
+	const columns = ['id', 'name', 'password'];
+	const valuesToInsert = [id, name, password];
+	insertIntoTable('users', columns, valuesToInsert);
 });
 
 app.put('/users/:id', (req, res) => {
