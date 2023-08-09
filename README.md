@@ -22,7 +22,7 @@ dotenv.config();
 create an .env file with the `port` variable on the root of the project
 
 ### 2 - Usage example
-or check folder examples
+or check folder examples for the basic and the examples that persists data into the database
 ```javascript
 src/examples
 ```

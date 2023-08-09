@@ -1,7 +1,7 @@
 
 import { createNodeRouter } from './nodeRouter';
 import {databaseFunctions
-} from 'src/connection';
+} from './connection';
 export {
   createNodeRouter,
   databaseFunctions

@@ -1,3 +1,3 @@
 import { createNodeRouter } from './nodeRouter';
-import { databaseFunctions } from 'src/connection';
+import { databaseFunctions } from './connection';
 export { createNodeRouter, databaseFunctions };
