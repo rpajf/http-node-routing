@@ -38,7 +38,7 @@ export const databaseFunctions = async (connectionObj: connectionObj) => {
 	const getAllRegistersFromTable: GetAllFunction = async (table) => {
 		const queryCommand = `SELECT * FROM ${table}`;
 		const result = await client.query(queryCommand);
-		return await result.rows;
+		return result.rows;
 	};
 	return {
 		connectDb: async () => {

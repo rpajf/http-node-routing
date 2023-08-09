@@ -40,3 +40,25 @@ export type InsertFunction = RelationalFunction<[table: string, columns: string[
 export type UpdateFunction = RelationalFunction<[table: string, columns: string[], values: any[], condition: string], void>;
 
 export type DeleteFunction = RelationalFunction<[table: string, condition: string], void>;
+
+// export interface DbConnectionGeneric {
+// 	db: string
+
+// }
+
+type connectionObj = {
+	user?: string;
+	host?: string;
+	database?: string;
+	password?: string;
+	port?: string;
+};
+
+
+export type DbConnectionGeneric =  {
+	connection: string 
+
+}
+type PostgresConnection = {
+
+}
