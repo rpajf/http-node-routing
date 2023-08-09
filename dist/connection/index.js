@@ -1,11 +1,5 @@
 import pg from 'pg';
 const { Client, Pool } = pg;
-export const connectDb = async ({ connectionObj }) => {
-    const { user, host, database, password, port } = connectionObj;
-    const client = new Client({ user, host, database, password, port });
-    await client.connect();
-    console.log('connected');
-};
 export const databaseFunctions = async (connectionObj) => {
     const { user, host, database, password, port } = connectionObj;
     const numericPort = parseInt(port, 10);
@@ -25,7 +19,7 @@ export const databaseFunctions = async (connectionObj) => {
     const getAllRegistersFromTable = async (table) => {
         const queryCommand = `SELECT * FROM ${table}`;
         const result = await client.query(queryCommand);
-        return await result.rows;
+        return result.rows;
     };
     return {
         connectDb: async () => {

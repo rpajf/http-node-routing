@@ -22,7 +22,10 @@ dotenv.config();
 create an .env file with the `port` variable on the root of the project
 
 ### 2 - Usage example
-
+or check folder examples
+```javascript
+src/examples
+```
 ```javascript
 
 import router from 'http-node-routing'

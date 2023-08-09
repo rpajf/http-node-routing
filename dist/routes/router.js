@@ -4,8 +4,7 @@ export class Router {
     }
     handleRequest(req, res) {
         const { method, url } = req;
-        const matchedRoute = this.routes
-            .map((route) => {
+        const matchedRoute = this.routes.map((route) => {
             if (route.method === method && route.path instanceof RegExp && url) {
                 const match = route.path.exec(url);
                 if (match) {
