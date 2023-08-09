@@ -6,7 +6,7 @@
     "node": ">=14.15.0"
   },
   "scripts": {
-    "start:dev": "tsx watch src/example/server.ts",
+    "start:dev": "tsx watch src/examples/basic",
     "dev": "npx tsc-watch --onSuccess \"node dist/server.js\"",
     "prepublish": "tsc"
   },
