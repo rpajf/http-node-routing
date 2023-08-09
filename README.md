@@ -1,6 +1,6 @@
 # http-node-routing
 # 
-This project was motivated by the will of understanding how things work. Im mainly using node http module to provide a router to handle HTTPS requests and responses. On future versions i will use  a generic entity that can peform these operations on a POSTGRES database. It should be used mainly for educational propurses.
+This project was motivated by the will of understanding how things work. Im mainly using node http module to provide a router to handle HTTPS requests and responses. On future versions i will use  a generic entity that can peform these operations on a POSTGRES database. It should be used mainly for educational propurses. Currently has support for postgresql
 ## Steps
 ### 1 - Installation
 install 
@@ -48,6 +48,8 @@ or clone the repo
 ```javascript
 git clone https://github.com/rpajf/http-node-routing
 ```
+## Support for other databases rather than postgres
+Im implementing support for sqlite3 and mysql
 ### still in progress...
 ### next steps: 
 - Handle the req.params and req.query 
