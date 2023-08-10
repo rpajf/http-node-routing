@@ -19,10 +19,9 @@ app.get('/users', async (req, res) => {
     res.send(registers);
 });
 app.post('/users', (req, res) => {
-    const { id, name, password } = req.body;
-    const columns = ['id', 'name', 'password'];
-    const valuesToInsert = [id, name, password];
-    insertIntoTable('users', columns, valuesToInsert);
-    res.send('Users created');
+    const { email, password } = req.body;
+    const columns = ['email', 'password'];
+    const valuesToInsert = [email, password];
+    insertIntoTable('users', columns, valuesToInsert, res);
 });
 //# sourceMappingURL=index.js.map

@@ -24,24 +24,31 @@ export class Router {
             }
         })
             .find((matched) => matched !== undefined);
-        try {
-            if (matchedRoute) {
-                req.params = matchedRoute.params;
-                matchedRoute.route.handler(req, res);
-            }
-            else {
-                res.statusCode = 404;
-                res.send({ error: 'Route not found' });
-            }
+        // try {
+        if (matchedRoute) {
+            req.params = matchedRoute.params;
+            Promise.resolve(matchedRoute.route.handler(req, res)).catch((error) => {
+                this.handleError(error, res);
+            });
         }
-        catch (error) {
-            console.log(`Error during request, ${error}`);
-            res.statusCode = 500;
-            res.send({ error: 'Error during request' });
+        else {
+            res.statusCode = 404;
+            res.send({ error: 'Route not found' });
         }
+        // } catch (error) {
+        // this.handleError(error, res)
+        // console.log(`Error during request, ${error}`);
+        // res.statusCode = 500;
+        // res.send({ error: 'Error during request' });
+        // }
     }
     addRoute(route) {
         this.routes.push(route);
+    }
+    handleError(error, res) {
+        console.log(`Error during request, ${error}`);
+        res.statusCode = 500;
+        res.send({ error: 'Error during request' });
     }
     route(method, path, handler) {
         this.addRoute({ method: method.toUpperCase(), path, handler });
