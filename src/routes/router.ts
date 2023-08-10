@@ -38,22 +38,31 @@ export class Router {
 			})
 			.find((matched) => matched !== undefined);
 
-		try {
+		// try {
 			if (matchedRoute) {
 				req.params = matchedRoute.params;
-				matchedRoute.route.handler(req, res);
+				Promise.resolve(matchedRoute.route.handler(req, res)).catch((error) => {
+					this.handleError(error, res);
+				});
+				
 			} else {
 				res.statusCode = 404;
 				res.send({ error: 'Route not found' });
 			}
-		} catch (error) {
-			console.log(`Error during request, ${error}`);
-			res.statusCode = 500;
-			res.send({ error: 'Error during request' });
-		}
+		// } catch (error) {
+			// this.handleError(error, res)
+			// console.log(`Error during request, ${error}`);
+			// res.statusCode = 500;
+			// res.send({ error: 'Error during request' });
+		// }
 	}
 	public addRoute(route: Route) {
 		this.routes.push(route);
+	}
+	handleError(error: string | unknown, res: ServerResponseExtended) {
+		console.log(`Error during request, ${error}`);
+		res.statusCode = 500;
+		res.send({ error: 'Error during request' });
 	}
 
 	route(

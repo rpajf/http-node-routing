@@ -6,7 +6,9 @@
     "node": ">=14.15.0"
   },
   "scripts": {
-    "start:dev": "tsx watch src/examples/basic",
+    "start:basic": "tsx watch src/examples/basic",
+    "start:db": "tsx watch src/examples/persistingToDb",
+
     "dev": "npx tsc-watch --onSuccess \"node dist/server.js\"",
     "prepublish": "tsc"
   },
@@ -22,6 +24,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "methods": "^1.1.2",
+    "mysql": "^2.18.1",
     "pg": "^8.11.2"
   },
   "devDependencies": {
