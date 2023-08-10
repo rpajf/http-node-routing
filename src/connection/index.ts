@@ -38,6 +38,7 @@ export const databaseFunctions = async (connectionObj: connectionObj) => {
 				','
 			)}) VALUES (${placeholders})`;
 			await client.query(queryCommand, values);
+			res.statusCode = 201;
 			res.send('User created');
 		} catch (error: any) {
 			console.log(`${error} on create a register`);
@@ -46,7 +47,7 @@ export const databaseFunctions = async (connectionObj: connectionObj) => {
 				error.message.includes('duplicate key value violates unique constraint')
 			) {
 				res.statusCode = 409;
-				res.send(`duplicate value`);
+				res.send(`duplicate value on column that accepts unique values`);
 			} else {
 				res.statusCode = 500;
 				res.send('Server error');

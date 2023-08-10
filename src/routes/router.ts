@@ -38,7 +38,7 @@ export class Router {
 			})
 			.find((matched) => matched !== undefined);
 
-		// try {
+		try {
 			if (matchedRoute) {
 				req.params = matchedRoute.params;
 				Promise.resolve(matchedRoute.route.handler(req, res)).catch((error) => {
@@ -49,12 +49,12 @@ export class Router {
 				res.statusCode = 404;
 				res.send({ error: 'Route not found' });
 			}
-		// } catch (error) {
-			// this.handleError(error, res)
-			// console.log(`Error during request, ${error}`);
-			// res.statusCode = 500;
-			// res.send({ error: 'Error during request' });
-		// }
+		} catch (error) {
+			this.handleError(error, res)
+			console.log(`Error during request, ${error}`);
+			res.statusCode = 500;
+			res.send({ error: 'Error during request' });
+		}
 	}
 	public addRoute(route: Route) {
 		this.routes.push(route);

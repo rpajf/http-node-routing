@@ -15,13 +15,14 @@ export const databaseFunctions = async (connectionObj) => {
             const placeholders = values.map((_, index) => `$${index + 1}`).join(',');
             const queryCommand = `INSERT INTO ${table} (${columns.join(',')}) VALUES (${placeholders})`;
             await client.query(queryCommand, values);
+            res.statusCode = 201;
             res.send('User created');
         }
         catch (error) {
             console.log(`${error} on create a register`);
             if (error.message.includes('duplicate key value violates unique constraint')) {
                 res.statusCode = 409;
-                res.send(`duplicate value`);
+                res.send(`duplicate value on column that accepts unique values`);
             }
             else {
                 res.statusCode = 500;
