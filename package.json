@@ -1,6 +1,6 @@
 {
   "name": "http-node-routing",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Node simple and agnostic backend lib created with http and typescript",
   "engines": {
     "node": ">=14.15.0"
@@ -8,11 +8,10 @@
   "scripts": {
     "start:basic": "tsx watch src/examples/basic",
     "start:db": "tsx watch src/examples/persistingToDb",
-    "prepublish": "tsc"
+    "prepublishOnly": "tsc"
   },
   "type": "module",
-  "module": "ES6",
-  "keywords": [],
+  "keywords": ["node", "http", "rest"],
   "author": "Raphael Portela",
   "repository": {
     "type": "git",

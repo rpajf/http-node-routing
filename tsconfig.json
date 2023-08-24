@@ -1,27 +1,57 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2017",                          
+//     "module": "esnext",
+//     "outDir": "./dist",
+//     "strict": true,
+//     "moduleResolution": "node",
+//     "baseUrl": "./",
+//     "esModuleInterop": true,
+//     "declaration": true,
+//     "forceConsistentCasingInFileNames": true, 
+//     "skipLibCheck": true,
+//     "resolveJsonModule": true,  
+//     "sourceMap": true,
+//     "paths": {
+//       "./nodeRouter": ["src/nodeRouter.ts"],
+//       "./connection": ["src/postgres/connection.ts"]
+//    } 
+//   },
+//   "include": ["src/**/*", "src/index.ts"],
+
+//   "exclude": [
+//     "node_modules",
+//     "**/*.spec.ts",
+//     "**/*.test.ts"
+//   ]
+// }
 {
   "compilerOptions": {
-    "target": "ES2017",                          
-    "module": "esnext",
-    "outDir": "./dist",
-    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
     "moduleResolution": "node",
     "baseUrl": "./",
-    "esModuleInterop": true,
-    "declaration": true,
-    "forceConsistentCasingInFileNames": true, 
-    "skipLibCheck": true,
-    "resolveJsonModule": true,  
-    "sourceMap": true,
     "paths": {
-      "./nodeRouter": ["src/nodeRouter.ts"],
-      "./connection": ["src/postgres/connection.ts"]
-   } 
-  },
-  "include": ["src/**/*", "src/index.ts"],
-
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+      "*": [
+        "*"
+      ]
+    },
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "types": [],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "verbatimModuleSyntax": false,  // <-- Add this
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true
+  }
 }

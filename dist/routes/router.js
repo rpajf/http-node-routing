@@ -1,4 +1,5 @@
 export class Router {
+    routes;
     constructor() {
         this.routes = [];
     }

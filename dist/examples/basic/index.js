@@ -22,23 +22,23 @@ app.post('/users', (req, res) => {
 app.put('/users/:id', (req, res) => {
     const userProps = req.params;
     const { name, password } = req.body;
-    const index = users.findIndex((user) => user.id === (userProps === null || userProps === void 0 ? void 0 : userProps.id));
+    const index = users.findIndex((user) => user.id === userProps?.id);
     if (index === -1) {
         res.end(404).send({ error: 'User not found' });
         return;
     }
-    users[index] = { id: userProps === null || userProps === void 0 ? void 0 : userProps.id, name, password };
+    users[index] = { id: userProps?.id, name, password };
     res.send(users[index]);
 });
 app.delete('/users/:id', (req, res) => {
     const userProps = req.params;
     const { name, password } = req.body;
-    const index = users.findIndex((user) => user.id === (userProps === null || userProps === void 0 ? void 0 : userProps.id));
+    const index = users.findIndex((user) => user.id === userProps?.id);
     if (index === -1) {
         res.end(404).send({ error: 'User not found' });
         return;
     }
-    users[index] = { id: userProps === null || userProps === void 0 ? void 0 : userProps.id, name, password };
+    users[index] = { id: userProps?.id, name, password };
     res.send(users[index]);
 });
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,6 @@
 export class Entity {
+    entities;
+    path;
     constructor(entities = [], path) {
         this.entities = entities;
         this.path = path;
@@ -13,7 +15,7 @@ export class Entity {
         return id.toString();
     }
     async create(entity) {
-        const newEntity = Object.assign({ id: this.generateRandomId() }, entity);
+        const newEntity = { id: this.generateRandomId(), ...entity };
         this.entities.push(newEntity);
         await this.persist();
     }
@@ -29,7 +31,10 @@ export class Entity {
         if (entityToFindIndex === -1) {
             throw new Error('Entity not found');
         }
-        this.entities[entityToFindIndex] = Object.assign(Object.assign({}, this.entities[entityToFindIndex]), newEntityData);
+        this.entities[entityToFindIndex] = {
+            ...this.entities[entityToFindIndex],
+            ...newEntityData,
+        };
         await this.persist();
     }
     async delete(id) {
