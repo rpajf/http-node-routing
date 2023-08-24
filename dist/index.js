@@ -1,4 +1,4 @@
-import { createNodeRouter } from './nodeRouter';
-import { databaseFunctions } from './postgres/connection';
+import { createNodeRouter } from './nodeRouter.js';
+import { databaseFunctions } from './postgres/connection.js';
 export { createNodeRouter, databaseFunctions };
 //# sourceMappingURL=index.js.map

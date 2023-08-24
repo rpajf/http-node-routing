@@ -1,4 +1,4 @@
-import { IncomingMessageWithBody } from './../middlewares/json';
+import { IncomingMessageWithBody } from './../middlewares/json.js';
 import { ServerResponseExtended } from './../types';
 import { IncomingMessage } from 'http';
 import { Route } from '../types';

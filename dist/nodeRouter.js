@@ -1,9 +1,9 @@
-import { Router } from './routes/router';
+import { Router } from './routes/router.js';
 import { methods } from './types';
-import { buildRouteParams } from './utils/buildRouteParams';
+import { buildRouteParams } from './utils/buildRouteParams.js';
 import http from 'http';
-import { json } from './middlewares/json';
-import { enhanceResponse } from './utils/response';
+import { json } from './middlewares/json.js';
+import { enhanceResponse } from './utils/response.js';
 export function createNodeRouter() {
     const router = new Router();
     function listen(port, cb) {
