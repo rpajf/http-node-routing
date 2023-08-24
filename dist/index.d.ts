@@ -1,3 +1,3 @@
-import { createNodeRouter } from './nodeRouter.js';
-import { databaseFunctions } from './connection/index';
+import { createNodeRouter } from './nodeRouter';
+import { databaseFunctions } from './connection';
 export { createNodeRouter, databaseFunctions };
