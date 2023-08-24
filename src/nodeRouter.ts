@@ -1,8 +1,8 @@
 import { Router } from './routes/router.js';
-import { RouteFunction, methods } from './types';
+import { RouteFunction, methods } from './types/index.js';
 import { buildRouteParams } from './utils/buildRouteParams.js';
 
-import { ServerResponseExtended } from './types';
+import { ServerResponseExtended } from './types/index.js';
 import http, { IncomingMessage } from 'http';
 import { IncomingMessageWithBody, json } from './middlewares/json.js';
 import { enhanceResponse } from './utils/response.js';

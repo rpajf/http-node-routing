@@ -1,4 +1,4 @@
-import { GetAllFunction, InsertFunction } from 'src/types';
+import { GetAllFunction, InsertFunction } from 'src/types/index.js';
 type connectionObj = {
     user?: string;
     host?: string;

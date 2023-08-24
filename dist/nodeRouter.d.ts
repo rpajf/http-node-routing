@@ -1,4 +1,4 @@
-import { RouteFunction } from './types';
+import { RouteFunction } from './types/index.js';
 export declare function createNodeRouter(): {
     listen: (port: number | string, cb?: any) => void;
     post: RouteFunction;

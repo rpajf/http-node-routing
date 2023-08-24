@@ -1,5 +1,5 @@
 import { Router } from './routes/router.js';
-import { methods } from './types';
+import { methods } from './types/index.js';
 import { buildRouteParams } from './utils/buildRouteParams.js';
 import http from 'http';
 import { json } from './middlewares/json.js';

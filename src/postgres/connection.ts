@@ -2,10 +2,9 @@ import pg from 'pg';
 const { Client, Pool } = pg;
 import {
 	GetAllFunction,
-	DeleteFunction,
 	InsertFunction,
 	UpdateFunction,
-} from 'src/types';
+} from 'src/types/index.js';
 
 type connectionObj = {
 	user?: string;

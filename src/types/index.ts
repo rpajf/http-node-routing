@@ -1,7 +1,7 @@
 import methodsRaw from 'methods';
 
 import http, { IncomingMessage } from 'http';
-import { IncomingMessageWithBody } from 'src/middlewares/json';
+import { IncomingMessageWithBody } from 'src/middlewares/json.js';
 
 export interface IEntity {
 	id: string;

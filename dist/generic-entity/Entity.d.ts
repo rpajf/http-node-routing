@@ -1,4 +1,4 @@
-import { IEntity } from 'src/types';
+import { IEntity } from 'src/types/index.js';
 export declare class Entity<T extends IEntity> {
     private entities;
     path: string;

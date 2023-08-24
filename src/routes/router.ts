@@ -1,7 +1,7 @@
 import { IncomingMessageWithBody } from './../middlewares/json.js';
-import { ServerResponseExtended } from './../types';
+import { ServerResponseExtended } from './../types/index.js';
 import { IncomingMessage } from 'http';
-import { Route } from '../types';
+import { Route } from '../types/index.js';
 
 export class Router {
 	private routes: Route[];
