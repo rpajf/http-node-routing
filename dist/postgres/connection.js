@@ -54,4 +54,4 @@ export const databaseFunctions = async (connectionObj) => {
         getAllRegistersFromTable,
     };
 };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=connection.js.map

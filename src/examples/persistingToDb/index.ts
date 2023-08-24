@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-import { databaseFunctions } from 'src/connection';
+import { databaseFunctions } from '../../postgres/connection';
 
 import { createNodeRouter } from '../../nodeRouter';
 dotenv.config();
@@ -29,12 +29,9 @@ app.get('/users', async (req, res) => {
 	res.send(registers);
 });
 
-
 app.post('/users', (req, res) => {
 	const { email, password } = req.body!;
 	const columns = ['email', 'password'];
 	const valuesToInsert = [email, password];
 	insertIntoTable('users', columns, valuesToInsert, res);
 });
-
-

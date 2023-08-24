@@ -5,13 +5,17 @@
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "esModuleInterop": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true, 
     "skipLibCheck": true,
     "resolveJsonModule": true,  
-    "sourceMap": true, 
+    "sourceMap": true,
+    "paths": {
+      "./nodeRouter": ["src/nodeRouter.ts"],
+      "./connection": ["src/postgres/connection.ts"]
+   } 
   },
   "include": ["src/**/*", "src/index.ts"],
 

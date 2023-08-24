@@ -7,7 +7,6 @@ import { enhanceResponse } from './utils/response';
 export function createNodeRouter() {
     const router = new Router();
     function listen(port, cb) {
-        const _port = typeof port === 'number' ? port : parseInt(port, 10);
         try {
             http
                 .createServer(async (req, res) => {

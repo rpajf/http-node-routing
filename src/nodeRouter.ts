@@ -7,18 +7,11 @@ import http, { IncomingMessage } from 'http';
 import { IncomingMessageWithBody, json } from './middlewares/json';
 import { enhanceResponse } from './utils/response';
 
-interface NodeRouter {
-	listen: (port: number) => void;
-	routes: Record<string, RouteFunction>;
-}
 
 export function createNodeRouter() {
 	const router = new Router();
 
 	function listen(port: number | string, cb?: any) {
-		const _port =
-			typeof port === 'number' ? port : parseInt(port as string, 10);
-
 		try {
 			http
 				.createServer(async (req, res) => {

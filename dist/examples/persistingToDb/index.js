@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { databaseFunctions } from 'src/connection';
+import { databaseFunctions } from '../../postgres/connection';
 import { createNodeRouter } from '../../nodeRouter';
 dotenv.config();
 const port = process.env.PORT || 3000;

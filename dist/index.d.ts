@@ -1,3 +1,3 @@
 import { createNodeRouter } from './nodeRouter';
-import { databaseFunctions } from './connection';
+import { databaseFunctions } from './postgres/connection';
 export { createNodeRouter, databaseFunctions };
