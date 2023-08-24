@@ -24,8 +24,8 @@ dotenv.config();
 
 create an .env file with the `port` variable on the root of the project
 
-### 2 - Usage example
-or check folder examples for the basic and the examples that persists data into the database
+### 2 - Simple usage example
+check folder examples for the basic and the examples that persists data into the database
 ```javascript
 src/examples
 ```
@@ -47,13 +47,78 @@ app.post('/users', (req, res) => {
 })
 
 ```
-or clone the repo
+### Usage with postgres
+1 - Start your postgres server
+
+2 - Add the port that the server is running into the database key attribute from
+connection object
+
+2 - Pass the table that you will perform the CRUD operations on the routes address
+
+Disclaimer: I have added only SELECT and INSERT operations for now
+
+```javascript
+import dotenv from 'dotenv';
+
+import { databaseFunctions } from 'src/connection';
+
+import { createNodeRouter } from '../../nodeRouter';
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+
+const app = createNodeRouter();
+
+const connection = {
+	user: process.env.PG_USER,
+	host: process.env.HOST,
+	password: process.env.PASSWORD,
+	database: process.env.DATABASE,
+	port: process.env.DB_PORT,
+};
+
+const { connectDb, getAllRegistersFromTable, insertIntoTable } =
+	await databaseFunctions(connection);
+
+app.listen(port, () => console.log(`listening on ${port}`));
+
+connectDb();
+
+app.get('/users', async (req, res) => {
+	const registers = await getAllRegistersFromTable('users');
+	res.send(registers);
+});
+
+
+app.post('/users', (req, res) => {
+	const { email, password } = req.body!;
+	const columns = ['email', 'password'];
+	const valuesToInsert = [email, password];
+	insertIntoTable('users', columns, valuesToInsert, res);
+});
+```
+## Clone the repo
 ```javascript
 git clone https://github.com/rpajf/http-node-routing
 ```
+run for the basic example:
+```javascript
+npm run start:basic
+```
+
+run for the persisting into postgres example:
+```javascript
+npm run start:db
+```
 ## Support for other databases rather than postgres
 Im implementing support for sqlite3 and mysql
+## How to contribute? 
+1 - Implement other methods for the CRUD operations on the Postgres databse
+
+2 - Add more tests to the library routing
+
 ### still in progress...
+
 ### next steps: 
 - Handle the req.params and req.query 
 - Creating the connection with databases (postgres and mysql)
