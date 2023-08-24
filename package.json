@@ -8,7 +8,6 @@
   "scripts": {
     "start:basic": "tsx watch src/examples/basic",
     "start:db": "tsx watch src/examples/persistingToDb",
-    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\"",
     "prepublish": "tsc"
   },
   "type": "module",
